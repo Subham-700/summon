@@ -1,0 +1,10 @@
+{
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://mocki.io/v1/785fb08b-0435-4ba4-8dd4-17bb658262cd"
+  }
+}
