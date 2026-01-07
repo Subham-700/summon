@@ -2,6 +2,10 @@ import DynamicForm from '@/components/form/DynamicForm';
 import { fetchFormSchema } from '@/services/schemaService';
 import ThemeToggle from '@/components/ThemeToggle';
 import { Suspense } from 'react';
+import Link from 'next/link';
+
+// Force dynamic rendering since we use no-store fetch
+export const dynamic = 'force-dynamic';
 
 /**
  * Loading component displayed while schema is being fetched
@@ -11,7 +15,7 @@ function FormLoading() {
     <div className="flex justify-center items-center min-h-100">
       <div className="text-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-        <p className="text-gray-600">Loading form schema...</p>
+        <p className="text-gray-600 dark:text-gray-400">Loading form schema...</p>
       </div>
     </div>
   );
@@ -23,17 +27,17 @@ function FormLoading() {
 function FormError({ error }: { error: string }) {
   return (
     <div className="flex justify-center items-center min-h-100">
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md">
-        <h2 className="text-red-800 font-semibold text-lg mb-2">
+      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 max-w-md">
+        <h2 className="text-red-800 dark:text-red-400 font-semibold text-lg mb-2">
           Unable to Load Form
         </h2>
-        <p className="text-red-600 mb-4">{error}</p>
-        <button
-          onClick={() => window.location.reload()}
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
+        <p className="text-red-600 dark:text-red-300 mb-4">{error}</p>
+        <Link
+          href="/"
+          className="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
         >
           Retry
-        </button>
+        </Link>
       </div>
     </div>
   );
